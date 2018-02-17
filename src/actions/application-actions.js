@@ -1,8 +1,8 @@
 import { client } from './';
 
-const url = '/contacts';
+const url = '/applications';
 
-export function fetchContacts(){
+export function fetchApplications(){
   return dispatch => {
     dispatch({
       type: 'FETCH_CONTACTS',
@@ -11,7 +11,7 @@ export function fetchContacts(){
   }
 }
 
-export function newContact() {
+export function newApplication() {
   return dispatch => {
     dispatch({
       type: 'NEW_CONTACT'
@@ -19,16 +19,16 @@ export function newContact() {
   }
 }
 
-export function saveContact(contact) {
+export function saveApplication(application) {
   return dispatch => {
     return dispatch({
       type: 'SAVE_CONTACT',
-      payload: client.post(url, contact)
+      payload: client.post(url, application)
     })
   }
 }
 
-export function fetchContact(_id) {
+export function fetchApplication(_id) {
   return dispatch => {
     return dispatch({
       type: 'FETCH_CONTACT',
@@ -37,16 +37,16 @@ export function fetchContact(_id) {
   }
 }
 
-export function updateContact(contact) {
+export function updateApplication(application) {
   return dispatch => {
     return dispatch({
       type: 'UPDATE_CONTACT',
-      payload: client.put(`${url}/${contact._id}`, contact)
+      payload: client.put(`${url}/${application._id}`, application)
     })
   }
 }
 
-export function deleteContact(_id) {
+export function deleteApplication(_id) {
   return dispatch => {
     return dispatch({
       type: 'DELETE_CONTACT',

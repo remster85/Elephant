@@ -1,4 +1,4 @@
-export const contacts = [
+export const applications = [
   {
     _id: "1",
     name: {

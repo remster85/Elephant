@@ -1,6 +1,6 @@
 # REDUX CRUD EXAMPLE
 
-This a basic crud react-redux-featherjs application for managing contacts. It currently uses MongoDB for the database and FeathersJS for the REST API server. 
+This a basic crud react-redux-featherjs application for managing applications. It currently uses MongoDB for the database and FeathersJS for the REST API server. 
 
 https://www.sitepoint.com/crud-app-react-redux-feathersjs/
 
@@ -8,7 +8,7 @@ https://www.sitepoint.com/crud-app-react-redux-feathersjs/
 
 ```bash
 git clone git@github.com:brandiqa/redux-crud-example.git
-cd react-contact-manager
+cd react-application-manager
 
 # Install frontend dependencies
 npm install
@@ -26,16 +26,16 @@ Ensure you have mongodb installed in your system and that it is running
 Start the backend server first:
 
 ```bash
-cd react-contact-manager/backend
+cd react-application-manager/backend
 npm start
 ```
-This will run the backend server at localhost:3030. If all is working well, you should be able to access the url http://localhost:3030/contacts from your Browser or Postman
+This will run the backend server at localhost:3030. If all is working well, you should be able to access the url http://localhost:3030/applications from your Browser or Postman
 
 ### Start the client
 Open a separate terminal to start the client:
 
 ```bash
-cd react-contact-manager
+cd react-application-manager
 npm start
 ```
 

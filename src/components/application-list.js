@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, Message, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import ContactCard from './contact-card';
+import ApplicationCard from './application-card';
 
-export default function ContactList({contacts, loading, errors, deleteContact}){
+export default function ApplicationList({applications, loading, errors, deleteApplication}){
 
   const loadingMessage = (
       <Message icon info>
@@ -19,9 +19,9 @@ export default function ContactList({contacts, loading, errors, deleteContact}){
       <Message icon info>
         <Icon name='warning circle' />
         <Message.Content>
-           <Message.Header>No Contacts Found</Message.Header>
-           <p>Add some new contacts to get started.</p>
-           <Link to={'/contacts/new'} className="ui button primary">Add New Contact</Link>
+           <Message.Header>No Applications Found</Message.Header>
+           <p>Add some new applications to get started.</p>
+           <Link to={'/applications/new'} className="ui button primary">Add New Application</Link>
        </Message.Content>
       </Message>
     )
@@ -37,14 +37,14 @@ export default function ContactList({contacts, loading, errors, deleteContact}){
     )
 
   const cards = () => {
-    return contacts.map(contact => {
+    return applications.map(application => {
       return (
-        <ContactCard key={contact._id} contact={contact} deleteContact={deleteContact} />
+        <ApplicationCard key={application._id} application={application} deleteApplication={deleteApplication} />
       )
     })
   }
 
-  const contactList = (
+  const applicationList = (
     <Card.Group>
       { cards() }
     </Card.Group>
@@ -53,9 +53,9 @@ export default function ContactList({contacts, loading, errors, deleteContact}){
   return (
     <div>
       { loading && loadingMessage }
-      { contacts.length === 0 && !loading  && !errors.global && emptyMessage }
+      { applications.length === 0 && !loading  && !errors.global && emptyMessage }
       { errors.global && timeoutMessage }
-      { contacts.length > 0 && contactList }
+      { applications.length > 0 && applicationList }
     </div>
   )
 }

@@ -1,6 +1,6 @@
 const defaultState = {
-  contacts: [],
-  contact: {name:{}},
+  applications: [],
+  application: {name:{}},
   loading: false,
   errors:{}
 }
@@ -10,7 +10,7 @@ export default (state=defaultState, action={}) => {
     case 'FETCH_CONTACTS_FULFILLED': {
       return {
         ...state,
-        contacts: action.payload.data.data,
+        applications: action.payload.data.data,
         loading: false,
         errors: {}
       }
@@ -35,7 +35,7 @@ export default (state=defaultState, action={}) => {
     case 'NEW_CONTACT': {
       return {
         ...state,
-        contact: {name:{}}
+        application: {name:{}}
       }
     }
 
@@ -49,7 +49,7 @@ export default (state=defaultState, action={}) => {
     case 'SAVE_CONTACT_FULFILLED': {
       return {
         ...state,
-        contacts: [...state.contacts, action.payload.data],
+        applications: [...state.applications, action.payload.data],
         errors: {},
         loading: false
       }
@@ -71,14 +71,14 @@ export default (state=defaultState, action={}) => {
       return {
         ...state,
         loading: true,
-        contact: {name:{}}
+        application: {name:{}}
       }
     }
 
     case 'FETCH_CONTACT_FULFILLED': {
       return {
         ...state,
-        contact: action.payload.data,
+        application: action.payload.data,
         errors: {},
         loading: false
       }
@@ -92,10 +92,10 @@ export default (state=defaultState, action={}) => {
     }
 
     case 'UPDATE_CONTACT_FULFILLED': {
-      const contact = action.payload.data;
+      const application = action.payload.data;
       return {
         ...state,
-        contacts: state.contacts.map(item => item._id === contact._id ? contact : item),
+        applications: state.applications.map(item => item._id === application._id ? application : item),
         errors: {},
         loading: false
       }
@@ -116,7 +116,7 @@ export default (state=defaultState, action={}) => {
       const _id = action.payload.data._id;
       return {
         ...state,
-        contacts: state.contacts.filter(item => item._id !== _id)
+        applications: state.applications.filter(item => item._id !== _id)
       }
     }
 

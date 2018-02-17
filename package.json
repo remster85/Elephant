@@ -1,8 +1,8 @@
 {
-  "name": "react-contact-manager",
+  "name": "react-application-manager",
   "version": "0.1.0",
   "private": true,
-  "description": "Basic crud react app for managing contacts",
+  "description": "Basic crud react app for managing applications",
   "author": "Michael Wanyoike",
   "license": "MIT",
   "repository": {

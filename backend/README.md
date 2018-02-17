@@ -1,6 +1,6 @@
 # backend
 
-> contacts api server
+> applications api server
 
 ## About
 

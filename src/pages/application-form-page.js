@@ -2,11 +2,11 @@ import React, { Component} from 'react';
 import { Redirect } from 'react-router';
 import { SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
-import { newContact, saveContact, fetchContact, updateContact } from '../actions/contact-actions';
-import ContactForm from '../components/contact-form';
+import { newApplication, saveApplication, fetchApplication, updateApplication } from '../actions/application-actions';
+import ApplicationForm from '../components/application-form';
 
 
-class ContactFormPage extends Component {
+class ApplicationFormPage extends Component {
 
   state = {
     redirect: false
@@ -15,21 +15,21 @@ class ContactFormPage extends Component {
   componentDidMount = () => {
     const { _id } = this.props.match.params;
     if(_id){
-      this.props.fetchContact(_id)
+      this.props.fetchApplication(_id)
     } else {
-      this.props.newContact();
+      this.props.newApplication();
     }
   }
 
-  submit = (contact) => {
-    if(!contact._id) {
-      return this.props.saveContact(contact)
+  submit = (application) => {
+    if(!application._id) {
+      return this.props.saveApplication(application)
         .then(response => this.setState({ redirect:true }))
         .catch(err => {
            throw new SubmissionError(this.props.errors)
          })
     } else {
-      return this.props.updateContact(contact)
+      return this.props.updateApplication(application)
         .then(response => this.setState({ redirect:true }))
         .catch(err => {
            throw new SubmissionError(this.props.errors)
@@ -43,7 +43,7 @@ class ContactFormPage extends Component {
         {
           this.state.redirect ?
           <Redirect to="/" /> :
-          <ContactForm contact={this.props.contact} loading={this.props.loading} onSubmit={this.submit} />
+          <ApplicationForm application={this.props.application} loading={this.props.loading} onSubmit={this.submit} />
         }
       </div>
     )
@@ -52,9 +52,9 @@ class ContactFormPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    contact: state.contactStore.contact,
-    errors: state.contactStore.errors
+    application: state.applicationStore.application,
+    errors: state.applicationStore.errors
   }
 }
 
-export default connect(mapStateToProps, {newContact, saveContact, fetchContact, updateContact})(ContactFormPage);
+export default connect(mapStateToProps, {newApplication, saveApplication, fetchApplication, updateApplication})(ApplicationFormPage);
