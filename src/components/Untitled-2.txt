@@ -98,9 +98,10 @@ class ApplicationForm extends Component {
           <Form onSubmit={handleSubmit} loading={loading}>
             <Field name="name.name" ico="address book"  type="text" component={this.renderField} label="Name"/>
             <Field name="sourcecontrol"  ico="github" type="text" component={this.renderField} label="Source Control"/>
-		        <Field name="documentation" ico="book" type="text" component={this.renderField} label="Documentation"/>
+            <Field name="build" ico="hourglass start" type="text" component={this.renderField} label="Build"/>
+		    <Field name="documentation" ico="book" type="text" component={this.renderField} label="Documentation"/>
 		 
-            <div><Icon name="hourglass start" />Builds</div>
+              <div><Icon name="hourglass start" />Builds</div>
               
             {this.state.builds.map((build, idx) => (
               <Form.Field key={idx}>

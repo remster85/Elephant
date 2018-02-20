@@ -1,0 +1,114 @@
+import React, { Component } from 'react';
+import { Form, Grid, Button, Icon } from 'semantic-ui-react';
+import { Field, reduxForm } from 'redux-form';
+import classnames from 'classnames';
+import { WithContext as ReactTags } from 'react-tag-input';
+import TagsInput from 'react-tagsinput'
+import SimpleExample from './simpletags.js'
+
+
+const validate = (values) => {
+  const errors = {name:{}};
+  if(!values.name || !values.name.name) {
+    errors.name.first = {
+      message: 'You need to provide an Application Name'
+    }
+  }
+  if(!values.build) {
+    errors.build = {
+      message: 'You need to provide the Application build path'
+    }
+  } 
+  if(!values.sourcecontrol) {
+    errors.email = {
+      message: 'You need to provide the Application source control path'
+    }
+  } 
+  return errors;
+}
+
+class ApplicationForm extends Component {
+
+  constructor(props) {
+        super(props);
+        this.state = {
+          name: '',
+          builds: [],
+          tags: [],
+          nextbuild: 1
+        };
+
+        this.handleAddBuild = this.handleAddBuild.bind(this);
+        this.handleRemoveBuild = this.handleRemoveBuild.bind(this);
+
+    }
+	
+	
+  componentWillReceiveProps = (nextProps) => { // Load Application Asynchronously
+    const { application } = nextProps;
+    if(application._id !== this.props.application._id) { // Initialize form only once
+      this.props.initialize(application)
+    }
+  }
+
+  handleAddBuild(){
+   console.log('build' + this.state.nextbuild);
+    var buildpath = document.getElementById('build' + this.state.nextbuild).value;
+    console.log(buildpath);
+    console.log('thanks for adding a build ' + buildpath);
+    this.setState({
+        builds: this.state.builds.concat([{ name: buildpath, idx : this.state.nextbuild }]),
+        nextbuild : this.state.nextbuild + 1
+    });
+
+    console.log(this.state.builds);
+
+  }
+
+
+  handleRemoveBuild(idx) {
+    alert('hi ' + idx);
+    console.log(this.state.builds);
+    this.setState({
+      builds: this.state.builds.filter(s => s.idx != idx)
+    });
+  }
+
+
+
+  renderField = ({ input, label, placeholder, type, ico, meta: { touched, error } }) => (
+    <div>
+      <Form.Field className={classnames({error:touched && error})}>
+        <div>  {ico && <Icon name={ico}/>} <label>{label}</label> </div>
+        {placeholder && <input {...input} placeholder={placeholder} type={type}/>}
+        {!placeholder && <input {...input} placeholder={label} type={type}/>}
+        {touched && error && <span className="error">{error.message}</span>}
+      </Form.Field>
+    </div>
+  )
+
+  render() {
+    const { handleSubmit, pristine, submitting, loading, application } = this.props;
+    return (
+      <div>
+              <div><h4>Builds</h4></div>
+                  {this.state.builds.map((build, idx) => (
+                    <Form.Field key={idx}>
+                        {build.name}  <Button compact size='mini' onClick={() => this.handleRemoveBuild(idx + 1)}>-</Button> 
+                    </Form.Field>
+                  ))}
+
+                <div>
+                <Form.Field> 
+                  <input placeholder={`build${this.state.nextbuild}`} id={`build${this.state.nextbuild}`}  name={`build${this.state.nextbuild}`} type="text"/>
+                <Button compact size='mini' onClick={() => this.handleAddBuild()}>+</Button> 
+              </Form.Field>  
+                </div>
+
+                <div> <Button primary type='submit' disabled={pristine || submitting}>Save</Button></div>
+        </div>
+    )
+  }
+}
+
+export default reduxForm({form: 'application', validate})(ApplicationForm);

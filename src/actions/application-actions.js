@@ -5,24 +5,26 @@ const url = '/applications';
 export function fetchApplications(){
   return dispatch => {
     dispatch({
-      type: 'FETCH_CONTACTS',
+      type: 'FETCH_APPLICATIONS',
       payload: client.get(url)
     })
   }
 }
 
 export function newApplication() {
+
   return dispatch => {
     dispatch({
-      type: 'NEW_CONTACT'
+      type: 'NEW_APPLICATION'
     })
   }
 }
 
 export function saveApplication(application) {
+  console.log(application);
   return dispatch => {
     return dispatch({
-      type: 'SAVE_CONTACT',
+      type: 'SAVE_APPLICATION',
       payload: client.post(url, application)
     })
   }
@@ -31,7 +33,7 @@ export function saveApplication(application) {
 export function fetchApplication(_id) {
   return dispatch => {
     return dispatch({
-      type: 'FETCH_CONTACT',
+      type: 'FETCH_APPLICATION',
       payload: client.get(`${url}/${_id}`)
     })
   }
@@ -40,7 +42,7 @@ export function fetchApplication(_id) {
 export function updateApplication(application) {
   return dispatch => {
     return dispatch({
-      type: 'UPDATE_CONTACT',
+      type: 'UPDATE_APPLICATION',
       payload: client.put(`${url}/${application._id}`, application)
     })
   }
@@ -49,7 +51,7 @@ export function updateApplication(application) {
 export function deleteApplication(_id) {
   return dispatch => {
     return dispatch({
-      type: 'DELETE_CONTACT',
+      type: 'DELETE_APPLICATION',
       payload: client.delete(`${url}/${_id}`)
     })
   }

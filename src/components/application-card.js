@@ -7,11 +7,11 @@ export default function ApplicationCard({application, deleteApplication}) {
     <Card>
       <Card.Content>
         <Card.Header>
-          <Icon name='user outline'/> {application.name.first} {application.name.last}
+          <Icon name='address book'/> {application.name.name}
         </Card.Header>
         <Card.Description>
-          <p><Icon name='phone'/> {application.phone}</p>
-          <p><Icon name='mail outline'/> {application.email}</p>
+          <p><Icon name='github'/> {application.sourcecontrol}</p>
+          <p><Icon name='book'/> {application.documentation}</p>
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
